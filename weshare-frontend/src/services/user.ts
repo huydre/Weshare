@@ -17,3 +17,12 @@ export const getUser = async (id: string) => {
    });
    return data;
 };
+
+export const getUsers = async () => {
+   const { data } = await API.get(`users/`, {
+      headers: {
+         Authorization: `Bearer ${localStorage.getItem('access')}`,
+      },
+   });
+   return data;
+};

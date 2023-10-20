@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from apps.user.models import User
+from rest_framework import serializers
 
 class Message(models.Model):
     

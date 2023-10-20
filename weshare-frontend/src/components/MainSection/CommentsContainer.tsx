@@ -9,11 +9,6 @@ import { addCommentRedux } from "@/redux/reducers/comment.slice";
 import { Button, Textarea } from "@nextui-org/react";
 import { RiSendPlaneFill } from "react-icons/ri";
 
-const variants = {
-  hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-};
-
 interface Props {
   post: Post;
 }

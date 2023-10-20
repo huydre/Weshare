@@ -4,7 +4,10 @@ from .models import Message
 class MessageSerializer(serializers.ModelSerializer):
 
     sender=serializers.ReadOnlyField(source='sender.username')
+    # sender_id = serializers.ReadOnlyField(source='sender.id')
+    
     receiver=serializers.ReadOnlyField(source='receiver.username')
+    # receiver_id = serializers.ReadOnlyField(source='receiver.id')
 
     class Meta:
         model = Message

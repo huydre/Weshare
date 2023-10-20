@@ -48,25 +48,32 @@ export interface AuthState {
   user: User | null;
 }
 
-
 export interface Form {
-  [key:string] : string
+  [key: string]: string;
+}
+
+export interface Target {
+  username: string;
+  first_name: string;
+  last_name: string;
+  id: number;
+  image_url: string;
 }
 
 export interface UserMessage {
   map(arg0: (message: any) => void): import("react").ReactNode;
-  last_message:      string;
-  unread_count:      number;
+  last_message: string;
+  unread_count: number;
   last_message_time: Date;
-  chat_id:           string;
-  participants:      string[];
+  chat_id: string;
+  target: Target;
 }
 
 export interface ParticipantsMessage {
-  id:       number;
-  sender:   string;
+  id: number;
+  sender: string;
   receiver: string;
-  body:     string;
-  date:     Date;
-  is_read:  boolean;
+  body: string;
+  date: Date;
+  is_read: boolean;
 }
