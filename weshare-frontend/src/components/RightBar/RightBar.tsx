@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import SuggesstUser from './SuggesstUser';
+import Events from './Events';
 
 export const RightBar = () => {
    return (
-      <div className="basis-[24%] sticky top-[85px] h-[calc(100vh-70px)]">
+      <div className="basis-[24%] sticky top-[85px] h-[calc(100vh-70px)] overflow-y-scroll scrollbar-hide pb-10">
          <div>
             <h4 className="text-lg font-bold text-gray-800 dark:text-white/70">Sponsored</h4>
 
@@ -14,8 +16,10 @@ export const RightBar = () => {
                         alt="#"
                         fill
                         loading="lazy"
-                        sizes="(max-width: 45px) 100vw, 40px"
-                        className="rounded-full cursor-pointer mt-3"
+                        style={{
+                           objectFit: "cover",
+                         }}
+                        className="cursor-pointer mt-3"
                      />
                   </div>
 
@@ -42,6 +46,9 @@ export const RightBar = () => {
          </div>
 
          <hr className="border-0 h-[1px] my-[15px] bg-gray-200/50 max-w-[80%] block mx-auto" />
+
+         <SuggesstUser/>
+         <Events/>
       </div>
    );
 };
