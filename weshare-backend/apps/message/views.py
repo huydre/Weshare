@@ -72,7 +72,7 @@ class UserMessagesViewSet(APIView):
                     chats[chat_id]['chat_id'] = chat_id
                     # Sử dụng từ điển participants
                     chats[chat_id]['target'] = participants
-                if not message.is_read and receiver.id == user_id:
+                if not message.is_read and int(receiver.id) == int(user_id):
                     chats[chat_id]['unread_count'] += 1
                 chats[chat_id]['last_message'] = message.body
                 chats[chat_id]['last_message_time'] = message.date
@@ -91,6 +91,18 @@ class ParticipantsMessagesViewSet(APIView):
     serializer_class = MessageSerializer
 
     def get(self, request, user1_id, user2_id):
+        messagess = Message.objects.filter(
+            sender=user2_id,  # Tin nhắn gửi từ user2
+            receiver=user1_id,  # Tin nhắn nhận bởi user1
+            is_read=False  # Chỉ cập nhật cho tin nhắn chưa đọc
+        )
+
+        # Cập nhật trạng thái is_read của các tin nhắn
+        for message in messagess:
+            message.is_read = True
+            message.save()
+        
+        
         messages = Message.objects.filter(
             sender__in=[user1_id, user2_id],
             receiver__in=[user1_id, user2_id]

@@ -117,7 +117,7 @@ export const MessageList = ({
                 />
                 <div>
                   <h2 className="font-semibold">{`${message.target.first_name} ${message.target.last_name}`}</h2>
-                  <p className="max-w-[290px] text-sm text-gray-600 font-medium truncate mr-2 dark:text-neutral-400">
+                  <p className={`max-w-[220px] text-sm text-gray-500 font-medium truncate mr-2 dark:text-neutral-400 ${message.unread_count > 0 && "text-black dark:text-white"}`}>
                     {message.last_message}
                   </p>
                 </div>
