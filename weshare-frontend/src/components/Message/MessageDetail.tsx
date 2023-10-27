@@ -2,10 +2,29 @@
 import { useRedux } from "@/hooks/useRedux";
 import { ParticipantsMessage, Target } from "@/interfaces/interface";
 import { getMessageParticipants, createMessage } from "@/services/message";
-import { Avatar, Button, Input, Textarea } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Input,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Textarea,
+} from "@nextui-org/react";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
 import Messager from "../icon/Messager";
+import EmojiPicker, {
+  EmojiStyle,
+  SkinTones,
+  Theme,
+  Categories,
+  EmojiClickData,
+  Emoji,
+  SuggestionMode,
+  SkinTonePickerLocation,
+} from "emoji-picker-react";
+import Smile from "../icon/Smile";
 
 export const MessageDetail = ({
   targetID,
@@ -63,6 +82,16 @@ export const MessageDetail = ({
     }
   };
 
+  function onClick(emojiData: EmojiClickData, event: MouseEvent) {
+    setText(
+      (inputValue) =>
+        inputValue + 
+        (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
+    );
+    textRef.current!.value = text;
+    textRef.current!.focus()
+  }
+
   // console.log(loading);
 
   return targetID ? (
@@ -107,6 +136,23 @@ export const MessageDetail = ({
 
         <div className="px-4 pb-4 pt-6 flex space-x-2 items-center">
           <Input
+            value={text}
+            startContent={
+              <Popover placement="top">
+                <PopoverTrigger>
+                  <Button isIconOnly variant="light">
+                    <Smile/>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <EmojiPicker
+                    onEmojiClick={onClick}
+                    autoFocusSearch={false}
+                    emojiStyle={EmojiStyle.NATIVE}
+                  />
+                </PopoverContent>
+              </Popover>
+            }
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 handleSendMessage();

@@ -23,7 +23,7 @@ const SuggesstUser = () => {
     if (userLogged) fetchMessage();
   }, []);
 
-  console.log(usersList);
+  // console.log(usersList);
 
   return (
     <div className="bg-white p-4 rounded-2xl drop-shadow-custom dark:bg-neutral-800">
