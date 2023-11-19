@@ -89,7 +89,7 @@ export const MessageDetail = ({
         (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
     );
     textRef.current!.value = text;
-    textRef.current!.focus()
+    textRef.current?.focus()
   }
 
   // console.log(loading);
@@ -106,7 +106,7 @@ export const MessageDetail = ({
           </div>
 
           {/* Message  */}
-          <div className="px-4 flex flex-col-reverse overflow-y-scroll h-[calc(100vh-232px)]">
+          <div className="px-4 flex flex-col-reverse overflow-y-scroll h-[calc(100vh-232px)] scrollbar-hide">
             {messages?.map((message) =>
               message.sender === userLogged!.username ? (
                 <div className="flex space-x-2 items-center justify-end pt-2 ">

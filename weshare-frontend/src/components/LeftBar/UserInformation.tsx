@@ -1,8 +1,33 @@
+'use client'
+import { getFollow } from "@/services/follow";
 import { Avatar } from "@nextui-org/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
 export const UserInformation = ({ user }: { user: any }) => {
+  const [follower, setFollower] = useState(0);
+  const [following, setFollowing] = useState(0);
+
+  useEffect(() => {
+      async function fetchUser() {
+        try {
+          if (user) {
+            const userResponse = await getFollow(
+              user.id
+            );
+            console.log(userResponse)
+            setFollower(userResponse.followers.length)
+            setFollowing(userResponse.following.length)
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchUser();
+    },[user])
+
+  // console.log(user)
+
   return (
     <div className="drop-shadow-custom">
       <div className="relative bg-neutral-50 rounded-xl p-4 dark:bg-neutral-800">
@@ -35,12 +60,12 @@ export const UserInformation = ({ user }: { user: any }) => {
 
           <div className="flex justify-between items-center text-center">
             <div>
-              <p className="text-[0.8rem] font-semibold">2.3k</p>
+              <p className="text-[0.8rem] font-semibold">{follower}</p>
               <p className="text-[0.7rem]">Follower</p>
             </div>
 
             <div>
-              <p className="text-[0.8rem] font-semibold">235</p>
+              <p className="text-[0.8rem] font-semibold">{following}</p>
               <p className="text-[0.7rem]">Following</p>
             </div>
 
