@@ -41,6 +41,7 @@ urlpatterns = [
     path('', include('apps.comment.urls')),
     path('', include('apps.message.urls')),
     path('', include('apps.follow.urls')),
+    path('', include('apps.stories.urls')),
     
     #SimpleJwt
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
@@ -55,6 +56,7 @@ urlpatterns = [
     path('', include('apps.comment.routers')),
     path('', include('apps.message.routers')),
     path('', include('apps.follow.routers')),
+    path('', include('apps.stories.routers')),
 ]
 
 from django.conf import settings
