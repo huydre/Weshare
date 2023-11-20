@@ -7,6 +7,7 @@ import { BsFillImageFill } from 'react-icons/bs';
 import { ChangeEvent, FormEvent, useRef } from 'react';
 import { updatePostRedux } from '@/redux/reducers/post.slice';
 import { updateProfilePost } from '@/redux/reducers/profilePosts.slice';
+import { Button, Textarea } from '@nextui-org/react';
 
 interface Props {
    post: Post;
@@ -52,25 +53,15 @@ export const ModalUpdate = ({ image, prevImage, description, setImage, setDescri
       }
    };
    return (
-      <div
-         className="fixed top-0 right-0 w-full h-full bg-black/80 flex items-center justify-center z-[60]"
-         onClick={() => {
-            handleCloseUpdateModal();
-            setPrevImage(undefined);
-         }}
-      >
-         <div onClick={(e) => e.stopPropagation()}>
             <form
-               className="form"
+            className='space-y-4'
                onSubmit={(e) => handleSubmit(e, post.id)}
             >
-               <h1 className="text-5xl font-bold text-white">Update your Post</h1>
-               <textarea
+               <Textarea
                   autoFocus
                   rows={5}
-                  className="input resize-none"
                   name="description"
-                  placeholder="Description"
+                  label="Description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                />
@@ -102,9 +93,9 @@ export const ModalUpdate = ({ image, prevImage, description, setImage, setDescri
                      />
                   </div>
                )}
-               <button className="formButton">Submit</button>
+               <Button color='primary' fullWidth>
+                  <button>Submit</button>
+               </Button>
             </form>
-         </div>
-      </div>
    );
 };

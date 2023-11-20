@@ -17,6 +17,13 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Textarea,
 } from "@nextui-org/react";
 
 interface Props {
@@ -32,6 +39,8 @@ export const PostHeadContainer = ({
   authorUsername,
   posts,
 }: Props) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   /* Form */
   const [image, setImage] = useState<File>();
   const [description, setDescription] = useState("");
@@ -171,7 +180,9 @@ export const PostHeadContainer = ({
                 : handleOpenUpdateModal(post.id)
             }
           >
-            <DropdownItem key="update">Update</DropdownItem>
+            <DropdownItem key="update" onPress={onOpen}>
+              Update
+            </DropdownItem>
             <DropdownItem key="delete" color="danger" className="text-red-500">
               Delete
             </DropdownItem>
@@ -180,16 +191,29 @@ export const PostHeadContainer = ({
       )}
 
       {showModalUpdate === post.id && (
-        <ModalUpdate
-          post={post}
-          image={image}
-          prevImage={prevImage}
-          description={description}
-          setImage={setImageCallback}
-          setPrevImage={setPrevImageCallback}
-          setDescription={setDescriptionCallback}
-          handleCloseUpdateModal={handleCloseUpdateModal}
-        />
+        <Modal size="2xl" isOpen={isOpen} onOpenChange={onOpenChange}>
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Update Post
+                </ModalHeader>
+                <ModalBody>
+                  <ModalUpdate
+                    post={post}
+                    image={image}
+                    prevImage={prevImage}
+                    description={description}
+                    setImage={setImageCallback}
+                    setPrevImage={setPrevImageCallback}
+                    setDescription={setDescriptionCallback}
+                    handleCloseUpdateModal={handleCloseUpdateModal}
+                  />
+                </ModalBody>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
       )}
     </div>
   );
