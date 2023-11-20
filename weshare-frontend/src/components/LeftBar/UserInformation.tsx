@@ -15,7 +15,6 @@ export const UserInformation = ({ user }: { user: any }) => {
             const userResponse = await getFollow(
               user.id
             );
-            console.log(userResponse)
             setFollower(userResponse.followers.length)
             setFollowing(userResponse.following.length)
           }

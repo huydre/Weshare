@@ -1,7 +1,7 @@
 import { API } from './axios';
 
 export const following = async(follow: any) => {
-    const {data} = await API.post('follows', follow, {
+    const {data} = await API.post('follows/', follow, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('access')}`,
          },
@@ -19,7 +19,7 @@ export const getFollow = async(id: any) => {
 }
 
 export const unFollow = async(follower: any, following:any) => {
-    const {data} = await API.post(`followlist/${follower}/${following}/`, {
+    const {data} = await API.delete(`unfollow/${follower}/${following}/`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('access')}`,
          },
