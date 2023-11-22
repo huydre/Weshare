@@ -22,6 +22,7 @@ const config: Config = {
         'dark-100': '#151515',
         'dark-200': '#141414',
         'dark-300': '#161616',
+        'secondary': '#FFFFFF',
       },
       dropShadow: {
         'custom': [

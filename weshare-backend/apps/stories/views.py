@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from apps.user.serializers import UserSerializer
+from apps.user.models import User
 from .serializers import (
     StoriesSerializer,
     StoriesCreateSerializer
@@ -8,6 +10,7 @@ from .models import Stories
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
 
 def is_owner(request, instance):
     return request.user == instance.author or request.user.is_staff # boolean value
@@ -45,3 +48,17 @@ class StoriesViewSet(viewsets.ModelViewSet):
         else:
             stories.delete()
             return Response({'message': 'Post deleted successfully'}, status=status.HTTP_200_OK)
+        
+class UserStoryListViewSet(APIView):
+    serializer_class = StoriesSerializer
+
+    def get(self,request, user_id):
+        user_stories = Stories.objects.filter(author=user_id)
+        serializer = StoriesSerializer(user_stories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UsersHasStories(APIView):
+    def get(self, request):
+        users_with_stories = User.objects.filter(stories__isnull=False).distinct()
+        serializer = UserSerializer(users_with_stories, many=True)
+        return Response(serializer.data)
