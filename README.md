@@ -15,6 +15,22 @@
 
 ![23shots_so](https://github.com/huydre/Weshare/assets/80162506/e78fc840-24d4-4c56-95b5-33709f960fea)
 
+###  Create new post
+
+![995shots_so](https://github.com/huydre/Weshare/assets/80162506/f50d59ad-a2c7-46ba-89d9-674e06aa02dc)
+
+### Message
+
+![470shots_so](https://github.com/huydre/Weshare/assets/80162506/a24acc57-848a-41cc-8f82-ac5aa5aff94d)
+
+### Story
+
+![600shots_so](https://github.com/huydre/Weshare/assets/80162506/1c6dc9a4-a4a2-4ad0-830f-413fd95cbf1d)
+
+### Follow
+
+
+![373shots_so](https://github.com/huydre/Weshare/assets/80162506/d92aa930-2bb4-44ae-a8db-135c469434dd)
 
 
 # Features
