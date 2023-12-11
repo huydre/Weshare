@@ -36,6 +36,7 @@
 # Features
 
 * Login, Register, Logout, Authentication
+* Light/Dark mode
 * HomePage
 * Create new post with image
 * Edit post
